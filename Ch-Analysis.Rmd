@@ -24,9 +24,17 @@ summary(glm(Fedu ~ Medu, data = rawdata, family = binomial))
 
 From the summary we can see that the mother's low education is a strong predictor of the father's education, and the two correlate quite heavily.
 
+We would also like to find out whether the father's or mother's employment to a certain sector predicts the student's final grade. For this we analyse both a graphical representation of the final grades for each sector and then compile a linear regression with the final grade as the dependent variable.
+
 ```{r}
-qplot(G3, data = rawdata, facets = Mjob~Fjob, geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students")
+qplot(G3, data = rawdata, facets = Fjob~., geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students", main="Father's job and final grade")
+summary(lm(G3 ~ Fjob, data = rawdata))
+
+qplot(G3, data = rawdata, facets = Mjob~., geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students", main="Mother's job and final grade")
+summary(lm(G3 ~ Mjob, data = rawdata))
+
 qplot(G3, data = rawdata, facets = Medu~Fedu, geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students")
+summary(lm(G3 ~ Medu + Fedu, data = rawdata))
 ```
 
 Finally we'll check graphically whether there seems to be any correlation between the number of absences and the final grade quartiles of the students.
@@ -34,3 +42,5 @@ Finally we'll check graphically whether there seems to be any correlation betwee
 ```{r}
 qplot(absences, data = rawdata, facets = G3_quart~., geom = "freqpoly")
 ```
+
+As most students have no absences independent of their quartile, it's hard to determine any substantial correlation between absences and final grade from the graphical representation. The fourth quartile figure suggests, though, that the students with highest final grades did not have a substantial number of absences.

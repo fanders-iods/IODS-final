@@ -1,12 +1,12 @@
 ---
 title: "IODS Final Assignment"
 author: "Tuomas Tiihonen"
-date: "10 joulukuuta 2017"
+date: "18 December 2017"
 email: "tuomas.tiihonen@helsinki.fi"
-abstract: This assignment tries to find underlying connections between variables in the student alcohol use dataset. The null hypothesis of the study, that no significant categories can be found in the data, was confirmed. No discernible categories could be identified using multiple correspondance analysis, but additional exploration of the data using first graphical tools and then logic regression showed that the education levels (secondary and higher contra lower) correlate between mothers and fathers of the students, and there is further correlation between the employment of the parents in the same sector.
+abstract: This assignment tries to find underlying connections between variables in the student alcohol use dataset. The null hypothesis of the study, that no significant categories can be found in the data, was confirmed. No discernible categories could be identified using multiple correspondence analysis, but additional exploration of the data using first graphical tools and then logic regression showed that the education levels (secondary and higher contra lower) correlate between mothers and fathers of the students, and there is further correlation between the employment of the parents in the same sector.
 output:
   html_document:
-    theme: jekyll-theme-architect
+    theme: journal
     number_sections: true
     df_print: paged
     toc: true

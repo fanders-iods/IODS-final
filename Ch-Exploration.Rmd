@@ -5,19 +5,35 @@ date: "10 joulukuuta 2017"
 output: html_document
 ---
 
-# Multiple Correspondance Analysis
+# Multiple Correspondence Analysis
 
 Having now acquainted ourselves with the contents of the dataset, it's time to see whether there are any interesting structures hidden in the data. 
 
-We will use the quantitative (integer) variables as extras in the MCA, while we base the actual categorisation on the categorical variables. As before, we will mostly use wider and taller figures, as the amount of information we wish to display is quite large.
+We will use the quantitative (integer) variables (indices 3,28,29) as supplementary variables in the MCA, while we base the actual categorisation on the categorical variables. As before, we will mostly use wider and taller figures, as the amount of information we wish to display is quite large.
 
+## MCA Summaries
+
+Our first task is to look at the summary of the MCA to see whether a low number of dimensions account for a high percentage of variance, which would indicate a significant finding in the analysis. In addition to the textual representation of the summary we will add a scree plot of the eigenvalues of the variables to determine a possible drop in the contribution levels to the variance.
 
 ```{r running and plotting MCA, eval = TRUE, fig.width = 12, fig.height = 12}
 
 mca <- MCA(rawdata, ncp = 5, quanti.sup=c(3,28,29), graph = FALSE)
 summary(mca)
+fviz_eig(mca, ncp = 10)
+```
+
+## Contributions to dimensions
+
+```{r, fig.width = 12, fig.height = 12}
 vars <- get_mca_var(mca)
-head(vars$cos2, 4)
+head(vars$cos2, 8)
+fviz_contrib(mca, choice = "var", axes = 1, top = 15)
+fviz_contrib(mca, choice = "var", axes = 2, top = 15)
+```
+
+## Variables in dimensions
+
+```{r, fig.width = 12, fig.height = 12}
 corrplot(vars$cos2, is.corr=FALSE)
 fviz_mca_var(mca, choice = "mca.cor", 
             repel = TRUE, # Avoid text overlapping (slow)
@@ -25,8 +41,11 @@ fviz_mca_var(mca, choice = "mca.cor",
 fviz_mca_var(mca, choice = "quanti.sup",
              ggtheme = theme_minimal())
 fviz_mca_biplot(mca, repel = TRUE, ggtheme = theme_minimal())
-fviz_contrib(mca, choice = "var", axes = 1, top = 15)
-fviz_contrib(mca, choice = "var", axes = 2, top = 15)
+```
+
+## Variable categories in dimensions
+
+```{r, fig.width = 12, fig.height = 12}
 fviz_mca_var(mca, col.var = "contrib",
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
              repel = TRUE, # avoid text overlapping (slow)
@@ -36,11 +55,19 @@ fviz_mca_ind(mca, col.ind = "cos2",
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
              repel = TRUE, # Avoid text overlapping (slow if many points)
              ggtheme = theme_minimal())
+```
+
+## Concentration ellipses
+
+```{r}
 fviz_ellipses(mca, "failures", geom = "point")
 fviz_ellipses(mca, "Medu", geom = "point")
 fviz_ellipses(mca, "Fedu", geom = "point")
 fviz_ellipses(mca, "Mjob", geom = "point")
 fviz_ellipses(mca, "Fjob", geom = "point")
 fviz_ellipses(mca, "high_use", geom = "point")
+```
+
+```{r}
 plot(mca, habillage = "quali", invisible=c("ind"))
 ```
