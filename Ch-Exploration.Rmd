@@ -1,0 +1,46 @@
+---
+title: "MCA"
+author: "Tuomas Tiihonen"
+date: "10 joulukuuta 2017"
+output: html_document
+---
+
+# Multiple Correspondance Analysis
+
+Having now acquainted ourselves with the contents of the dataset, it's time to see whether there are any interesting structures hidden in the data. 
+
+We will use the quantitative (integer) variables as extras in the MCA, while we base the actual categorisation on the categorical variables. As before, we will mostly use wider and taller figures, as the amount of information we wish to display is quite large.
+
+
+```{r running and plotting MCA, eval = TRUE, fig.width = 12, fig.height = 12}
+
+mca <- MCA(rawdata, ncp = 5, quanti.sup=c(3,28,29), graph = FALSE)
+summary(mca)
+vars <- get_mca_var(mca)
+head(vars$cos2, 4)
+corrplot(vars$cos2, is.corr=FALSE)
+fviz_mca_var(mca, choice = "mca.cor", 
+            repel = TRUE, # Avoid text overlapping (slow)
+            ggtheme = theme_minimal())
+fviz_mca_var(mca, choice = "quanti.sup",
+             ggtheme = theme_minimal())
+fviz_mca_biplot(mca, repel = TRUE, ggtheme = theme_minimal())
+fviz_contrib(mca, choice = "var", axes = 1, top = 15)
+fviz_contrib(mca, choice = "var", axes = 2, top = 15)
+fviz_mca_var(mca, col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             repel = TRUE, # avoid text overlapping (slow)
+             ggtheme = theme_minimal()
+             )
+fviz_mca_ind(mca, col.ind = "cos2", 
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE, # Avoid text overlapping (slow if many points)
+             ggtheme = theme_minimal())
+fviz_ellipses(mca, "failures", geom = "point")
+fviz_ellipses(mca, "Medu", geom = "point")
+fviz_ellipses(mca, "Fedu", geom = "point")
+fviz_ellipses(mca, "Mjob", geom = "point")
+fviz_ellipses(mca, "Fjob", geom = "point")
+fviz_ellipses(mca, "high_use", geom = "point")
+plot(mca, habillage = "quali", invisible=c("ind"))
+```

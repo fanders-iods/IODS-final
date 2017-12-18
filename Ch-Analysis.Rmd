@@ -1,0 +1,31 @@
+---
+title: "Extra analysis"
+author: "Tuomas Tiihonen"
+date: "10 joulukuuta 2017"
+output: html_document
+---
+
+# Extra analysis with other methods
+
+Why stop with MCA where you're having fun? Based on exploring the variables before we started further analysis, some unanswered questions on the connections of the variables crept up. Let's try and see if we can shed some light on the families of the students.
+
+
+
+```{r}
+plot(rawdata$Mjob~rawdata$Fjob, xlab="Mother's occupation", ylab="Father's occupation", main="Occupational homogeneity", cex = 0.5)
+plot(rawdata$Medu~rawdata$Fedu, xlab="Mother's education level", ylab="Father's education level", main="Educational homogeneity", cex = 0.5) 
+```
+
+From these standard graphs we can deduce that the parents educational levels correlate quite heavily. We can try to certify this through logistic regression.
+
+```{r}
+summary(glm(Fedu ~ Medu, data = rawdata, family = binomial))
+```
+
+
+
+```{r}
+qplot(G3, data = rawdata, facets = Mjob~Fjob, geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students")
+qplot(G3, data = rawdata, facets = Medu~Fedu, geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students")
+qplot(absences, data = rawdata, facets = G3_quart~., geom = "freqpoly")
+```

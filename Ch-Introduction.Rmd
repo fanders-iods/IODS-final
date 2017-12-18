@@ -1,0 +1,12 @@
+---
+title: "Introduction"
+author: "Tuomas Tiihonen"
+date: "10 joulukuuta 2017"
+output: html_document
+---
+
+# Introduction
+
+My Github repo is [here](https://github.com/fanders-iods/IODS-final)
+
+You can find my data wrangling script [here](https://github.com/fanders-iods/IODS-final/blob/master/data/wrangle_students.R)
