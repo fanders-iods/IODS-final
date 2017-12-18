@@ -22,10 +22,15 @@ From these standard graphs we can deduce that the parents educational levels cor
 summary(glm(Fedu ~ Medu, data = rawdata, family = binomial))
 ```
 
-
+From the summary we can see that the mother's low education is a strong predictor of the father's education, and the two correlate quite heavily.
 
 ```{r}
 qplot(G3, data = rawdata, facets = Mjob~Fjob, geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students")
 qplot(G3, data = rawdata, facets = Medu~Fedu, geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students")
+```
+
+Finally we'll check graphically whether there seems to be any correlation between the number of absences and the final grade quartiles of the students.
+
+```{r}
 qplot(absences, data = rawdata, facets = G3_quart~., geom = "freqpoly")
 ```

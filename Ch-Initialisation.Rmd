@@ -11,14 +11,16 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 # Preparatory actions
 
-Before we can start analysing the food poisonings, some groundwork is needed to prepare the environment for the analysis, and actually import the data as well.
+Before we can start analysing the student data, some groundwork is needed to prepare the environment for the analysis, and actually import the data as well.
+
+Much of the data preparation work towards better analysis possibilities with MCA has been done already in the [data wrangling script](https://github.com/fanders-iods/IODS-final/blob/master/data/wrangle_students.R).
 
 ## Library import
 
 We'll start off by importing the necessary libraries that will provide us the many of the functions we'll use in this assignment. Because the libraries merely provide us the functions we'll describe when they're used in the context of the data, I've included short descriptions of the libraries as code comments below.
 
 ```{r library access, echo=TRUE}
-library(FactoMineR) # This includes our dataset along with a lot of factor analysis stuff
+library(FactoMineR) # This includes a lot of factor analysis stuff
 library(factoextra) # Considered, if you will, an extension to FactoMiner with more progressive plotting capabilities
 library(ggplot2) # The do-all plotting library
 library(dplyr) # Everyone needs to manipulate data
