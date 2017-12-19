@@ -33,7 +33,7 @@ library(tidyr) # Tidyr provides us data manipulation functions
 The next bit is importing the data and taking a look at it.
 
 ```{r data import}
-load(file = "Z:/IODS-final/data/wrangled_students.Rdata")
+load(file = "/Volumes/tuti/IODS-final/data/wrangled_students.Rdata")
 dim(rawdata)
 ```
 
