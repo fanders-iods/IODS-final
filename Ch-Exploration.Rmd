@@ -64,7 +64,7 @@ fviz_mca_var(mca, choice = "quanti.sup",
              ggtheme = theme_minimal())
 ```
 
-As we can see, the absences grow along dimension 1, while the final grade and age are nearly opposites on dimension 2.
+As we can see, the absences grow along dimension 2, while the final grade and age are nearly opposites on dimension 1.
 
 ## MCA biplot
 
@@ -88,7 +88,7 @@ fviz_mca_ind(mca, col.ind = "cos2",
 
 While the dimensions' contributions to the total variance are not discernible, some of the values of the variables are relatively closely grouped together. For example, a high amount of free time seems to be closely matched with going out a lot, and both the mother's and father's employment as teachers seem to coincide. Similarly, a low amount of study time seems to be close to the high use of alcohol.
 
-If we select values that are >??.5 on both dimensions, we end up with the following groupings in the four quadrants:
+If we select values that are \ge\pm.5 on both dimensions, we end up with the following groupings in the four quadrants:
 
 Top-left:
 

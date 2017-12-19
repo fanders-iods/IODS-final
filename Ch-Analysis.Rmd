@@ -29,10 +29,18 @@ We would also like to find out whether the father's or mother's employment to a 
 ```{r}
 qplot(G3, data = rawdata, facets = Fjob~., geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students", main="Father's job and final grade")
 summary(lm(G3 ~ Fjob, data = rawdata))
+```
 
+The model does not predict that the father's occupation is a predictor of the student's final grade on a statistically significant level.
+
+```{r}
 qplot(G3, data = rawdata, facets = Mjob~., geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students", main="Mother's job and final grade")
 summary(lm(G3 ~ Mjob, data = rawdata))
+```
 
+Even though the mother's occupation is a statistically significant predictor for the student's final grade on the selected level of significance, the low R-squared suggests that the effect of the variable to the final grade is only ~3%.  
+
+```{r}
 qplot(G3, data = rawdata, facets = Medu~Fedu, geom = "freqpoly", binwidth = 1, xlab = "Final grade", ylab = "Students")
 summary(lm(G3 ~ Medu + Fedu, data = rawdata))
 ```
